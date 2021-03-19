@@ -1,0 +1,35 @@
+<form>
+    <div class="form-group">
+      <label for="monto">Ingrese el monto</label>
+      <input type="number" class="form-control" id="monto" placeholder="100" [(ngModel)]="monto" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="row">
+        <div class="form-group col-6">
+          <label for="monedaInicial">¿De que moneda?</label>
+          <select class="form-control" id="monedaInicial" (input)="onSelectChangeInicial($event)">
+            <option [value]="moneda.nombre" *ngFor="let moneda of listaMonedas">{{ moneda.nombre }}</option>
+            
+          </select>
+        </div>
+        <div class="form-group col-6">
+            <label for="monedaFinal">¿De que moneda?</label>
+            <select class="form-control" id="monedaFinal" (input)="onSelectChangeFinal($event)">
+              <option [value]="moneda.nombre" *ngFor="let moneda of listaMonedas">{{ moneda.nombre }}</option>
+
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-success m-auto d-flex align-items-center" (click)="calcularMoneda()">Calcular</button>
+        </div>
+        <div class="col-12 d-flex align-items-center" *ngIf="monto > 0 && montoFinal > 0">
+            <div class="d-flex align-items-center resultado">
+                <span class="btn btn-primary">{{ monto }} {{ monedaInicial }} </span><span class="btn btn-success"> es igual a </span><span class="btn btn-primary"> {{ montoFinal }} {{ monedaFinal }}</span>
+            </div>
+        </div>
+        
+
+    </div>
+
+  </form>
